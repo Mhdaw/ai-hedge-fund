@@ -1,6 +1,6 @@
 from langchain_core.messages import HumanMessage
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai.chat_models import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 from agents.state import AgentState, show_agent_reasoning
 
@@ -108,7 +108,11 @@ def portfolio_management_agent(state: AgentState):
         }
     )
     # Invoke the LLM
-    llm = ChatOpenAI(model="gpt-4o")
+    llm = llm = ChatGoogleGenerativeAI(
+        model="gemini-1.5-pro",
+        max_tokens=None,
+        timeout=None,
+    )
     result = llm.invoke(prompt)
 
     # Create the portfolio management message

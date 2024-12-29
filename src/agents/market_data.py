@@ -1,12 +1,15 @@
-
-from langchain_openai.chat_models import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 from agents.state import AgentState
 from tools.api import search_line_items, get_financial_metrics, get_insider_trades, get_market_cap, get_prices
 
 from datetime import datetime
 
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatGoogleGenerativeAI(
+    model="gemini-1.5-pro",
+    max_tokens=None,
+    timeout=None,
+)
 
 def market_data_agent(state: AgentState):
     """Responsible for gathering and preprocessing market data"""
